@@ -1,6 +1,8 @@
 package com.banking.model;
 
+import com.banking.constant.Constant;
 import com.banking.dto.KhachHangDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -28,25 +30,30 @@ public class KhachHang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotBlank(message = "{khachhang.not.blank}")
-    @Size(max = 11, message = "{khachhang.sdt.maxlength}")
-    @Pattern(regexp = "\\d+", message = "{khachhang.sdt.regex}")
+    @NotBlank(message = Constant.MessageResponse.KH_PHONE_NOT_BLANK)
+    @Size(max = 11, message = Constant.MessageResponse.KH_PHONE_MAX_LENGHT)
+    @Pattern(regexp = "\\d+", message = Constant.MessageResponse.KH_PHONE_REGEX)
+    @Schema(example = "09127362")
     private String sdt;
 
-    @NotBlank(message = "{khachhang.cccd.notblank}")
-    @Size(max = 12, message = "{khachhang.cccd.maxlength}")
-    @Pattern(regexp = "\\d+", message = "{khachhang.cccd.regex}")
+    @NotBlank(message = Constant.MessageResponse.KH_CCCD_NOT_BLANK)
+    @Size(max = 12, message = Constant.MessageResponse.KH_CCCD_MAX_LENGHT)
+    @Pattern(regexp = "\\d+", message = Constant.MessageResponse.KH_CCCD_REGEX)
     @Column(unique = true)
+    @Schema(example = "0123456789")
     private String cccd;
 
-    @NotBlank(message = "{khachhang.hoten.notblank}")
+    @NotBlank(message = Constant.MessageResponse.KH_HOTEN_NOT_BLANK)
+    @Schema(example = "Nguyễn Văn A")
     private String hoTen;
 
     @Enumerated(EnumType.STRING)
+    @Schema(example = "Nam")
     private GioiTinh gioiTinh;
 
-    @NotNull(message = "{khachhang.ngaysinh.notnull}")
-    @Past(message = "{khachhang.ngaysinh.past}")
+    @NotNull(message = Constant.MessageResponse.KH_NGAYSINH_NOT_NULL)
+    @Past(message = Constant.MessageResponse.KH_NGAYSINH_PAST)
+    @Schema(example = "1992-06-26")
     private LocalDate ngaySinh;
 
 

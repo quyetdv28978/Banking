@@ -21,13 +21,12 @@ public class KhachHangControllerAdvisor {
     @ExceptionHandler(CCCDisExistException.class)
     @ResponseStatus(HttpStatus.CONFLICT) //409
     public ErrorResponse CCCDisExistHandler(CCCDisExistException ex, WebRequest request){
-        ErrorResponse error = new ErrorResponse(
+        return new ErrorResponse(
                 HttpStatus.CONFLICT.value(),
                 new Date(),
                 List.of(ex.getMessage()),
                 request.getDescription(false)
         );
-        return error;
     }
 
     // Xử lí ngoại lệ tìm kiếm khách hàng không tồn tại
@@ -35,12 +34,11 @@ public class KhachHangControllerAdvisor {
     @ExceptionHandler(KhachHangNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse KhachHangNotFoundHandler(KhachHangNotFoundException ex, WebRequest request){
-        ErrorResponse error = new ErrorResponse(
+        return new ErrorResponse(
                 HttpStatus.NOT_FOUND.value(),
                 new Date(),
                 List.of(ex.getMessage()),
                 request.getDescription(false)
         );
-        return error;
     }
 }

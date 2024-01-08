@@ -35,7 +35,7 @@ public class KhachHangController {
     // Tham số truyền vào với kiểu dữ liệu là long
     // Trả về thông tin khách hàng với trạng thái thành công
     @GetMapping("/{khachHangId}")
-    public ResponseEntity<KhachHangDTO> findKhachHangById(
+    public ResponseEntity<KhachHangDTO> getKhachHangById(
             @PathVariable(name = "khachHangId") Long id
     ) {
 
