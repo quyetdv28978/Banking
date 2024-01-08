@@ -12,9 +12,12 @@ import org.springframework.web.context.request.WebRequest;
 import java.util.Date;
 import java.util.List;
 
+// class xử lí lỗi liên quan đến khách hàng
 @RestControllerAdvice
 public class KhachHangControllerAdvisor {
 
+    // Xử lí ngoại lệ CCCD của khách hàng không tồn tại
+    // Trả về mã lỗi, ngày lỗi, danh sách lỗi và api bị lỗi
     @ExceptionHandler(CCCDisExistException.class)
     @ResponseStatus(HttpStatus.CONFLICT) //409
     public ErrorResponse CCCDisExistHandler(CCCDisExistException ex, WebRequest request){
@@ -27,6 +30,8 @@ public class KhachHangControllerAdvisor {
         return error;
     }
 
+    // Xử lí ngoại lệ tìm kiếm khách hàng không tồn tại
+    // Trả về mã lỗi, ngày lỗi, danh sách lỗi và api bị lỗi 
     @ExceptionHandler(KhachHangNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse KhachHangNotFoundHandler(KhachHangNotFoundException ex, WebRequest request){

@@ -9,6 +9,16 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+// class map với bảng khachhang trong db
+// Thuộc tính : 
+/*id: primary key kiểu long, giá trị tự động tăng
+ * sdt: ràng buộc not blank, maxlength = 11, chỉ chứa số
+ * cccd: ràng buộc not blank, maxlength = 12, chi chứa số
+ * hoTen: ràng buộc not blank
+ * ngaySinh: ràng buộc not null, không được là ngày trong tương lai 9/1/2024 -> error
+ */
+// Hàm loadFromDTO chuyển đỗi dữ liệu từ khachhangDTO sang khachhang
+// Tham số nhận vào là 1 khachhangDTO
 @Entity
 @Data
 @AllArgsConstructor
@@ -38,6 +48,7 @@ public class KhachHang {
     @NotNull(message = "{khachhang.ngaysinh.notnull}")
     @Past(message = "{khachhang.ngaysinh.past}")
     private LocalDate ngaySinh;
+
 
     public void loadFromDTO(KhachHangDTO khachHangDTO) {
         this.sdt = khachHangDTO.getSdt();
