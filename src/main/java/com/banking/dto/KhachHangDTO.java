@@ -43,11 +43,13 @@ public class KhachHangDTO {
     @Schema(example = "1992-06-26")
     private LocalDate ngaySinh;
 
-    public void loadFromEntity(KhachHang khacHang) {
-        this.sdt = khacHang.getSdt();
-        this.cccd = khacHang.getCccd();
-        this.hoTen = khacHang.getHoTen();
-        this.gioiTinh = khacHang.getGioiTinh();
-        this.ngaySinh = khacHang.getNgaySinh();
+    public static KhachHangDTO loadFromEntity(KhachHang khacHang) {
+        KhachHangDTO khachHangDTO = new KhachHangDTO();
+        khachHangDTO.setSdt(khacHang.getSdt());
+        khachHangDTO.setCccd(khacHang.getCccd());
+        khachHangDTO.setHoTen(khacHang.getHoTen());
+        khachHangDTO.setGioiTinh(khacHang.getGioiTinh());
+        khachHangDTO.setNgaySinh(khacHang.getNgaySinh());
+        return khachHangDTO;
     }
 }

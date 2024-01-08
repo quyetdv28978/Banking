@@ -23,9 +23,9 @@ public class KhachHangController {
     private KhachHangServiceImpl khachHangService;
 
     @GetMapping()
-    public ResponseEntity<List<KhachHang>> getAll() {
+    public ResponseEntity<List<KhachHangDTO>> getAll() {
 
-        List<KhachHang> khachHangList= khachHangService.findAllKhachHang();
+        List<KhachHangDTO> khachHangList= khachHangService.findAllKhachHang();
         return new ResponseEntity<>(khachHangList, HttpStatus.OK);
     }
 
