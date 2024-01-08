@@ -30,7 +30,7 @@ public class KhachHangController {
     }
 
     @GetMapping("/{khachHangId}")
-    public ResponseEntity<KhachHangDTO> findKhachHangById(
+    public ResponseEntity<KhachHangDTO> getKhachHangById(
             @PathVariable(name = "khachHangId") Long id
     ) {
 

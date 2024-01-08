@@ -1,5 +1,6 @@
 package com.banking.model;
 
+import com.banking.constant.Constant;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -15,14 +16,12 @@ public class TaiKhoanNganHang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Pattern(regexp = "\\d+",message = "Số tài khoản chỉ nhập số")
-    @Column(name = "soTaiKhoan")
+    @Pattern(regexp = "\\d+",message = Constant.MessageResponse.TKNH_SOTK_REGEX)
     private String soTK;
 
     private Long soDu;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "loaiTaiKhoan")
     private LoaiTK loaiTK;
 
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.banking.service.Impl;
 
+import com.banking.constant.Constant;
 import com.banking.dto.KhachHangDTO;
 import com.banking.exception.CCCDisExistException;
 import com.banking.exception.KhachHangNotFoundException;
@@ -32,7 +33,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
     public void insertKhachHang(KhachHangDTO khachHangDTO) {
         Optional<KhachHang> khachHang = khachHangRepository.findKhachHangByCccd(khachHangDTO.getCccd());
         if (khachHang.isPresent()){
-            throw  new CCCDisExistException(messageSource.getMessage("cccd.exists",null,null));
+            throw  new CCCDisExistException(Constant.MessageResponse.KH_CCCD_EXIST);
         }else {
             KhachHang newKhachHang = new KhachHang();
             newKhachHang.loadFromDTO(khachHangDTO);
@@ -43,7 +44,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
     @Override
     public void updateKhachHang(Long id, KhachHangDTO khachHangDTO) {
         KhachHang khachHang = khachHangRepository.findKhachHangById(id)
-                .orElseThrow(() -> new KhachHangNotFoundException(messageSource.getMessage("khachhang.notfound",null,null)));
+                .orElseThrow(() -> new KhachHangNotFoundException(Constant.MessageResponse.KH_CCCD_EXIST));
 
         khachHang.loadFromDTO(khachHangDTO);
         khachHangRepository.save(khachHang);
@@ -52,7 +53,7 @@ public class KhachHangServiceImpl implements IKhachHangService {
     @Override
     public void deleteKhachHang(Long id) {
         KhachHang khachHang = khachHangRepository.findKhachHangById(id)
-                .orElseThrow(() -> new KhachHangNotFoundException(messageSource.getMessage("khachhang.notfound",null,null)));
+                .orElseThrow(() -> new KhachHangNotFoundException(Constant.MessageResponse.KH_CCCD_EXIST));
 
         khachHangRepository.delete(khachHang);
     }
